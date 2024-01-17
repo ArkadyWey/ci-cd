@@ -1,0 +1,23 @@
+stages:
+  - linting
+
+.linting-template:
+  stage: linting
+  image: registry.gitlab.com/mafda/python-linting
+  before_script:
+    - cd src
+
+isort:
+  extends: .linting-template
+  script:
+    - isort . --check-only
+
+black:
+  extends: .linting-template
+  script:
+    - black --check .
+
+flake8:
+  extends: .linting-template
+  script:
+    - flake8 .
