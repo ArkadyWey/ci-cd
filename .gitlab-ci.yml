@@ -14,14 +14,21 @@ stages:
 isort:
   extends: .linting-template
   script:
-    - isort . --check-only
+    - poetry run isort . --check-only
 
 black:
   extends: .linting-template
   script:
-    - black --check .
+    - poetry run black --check .
 
 flake8:
   extends: .linting-template
   script:
-    - flake8 .
+    - poetry run flake8 .
+
+pytest:
+  stage: test
+  before_script:
+    - wget -qO- https://ai.stanford.edu/\~amaas/data/sentiment/aclImdb_v1.tar.gz - | tar xvz -C src/
+  script:
+    - poetry run pytest
