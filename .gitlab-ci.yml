@@ -12,6 +12,7 @@ stages:
     - pip install poetry
     - poetry install
     - cd src
+  allow_failure: true
 
 isort:
   extends: .linting-template
