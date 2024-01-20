@@ -35,6 +35,6 @@ pytest:
   before_script:
     - pip install poetry
     - poetry install
-    - wget -qO- https://ai.stanford.edu/\~amaas/data/sentiment/aclImdb_v1.tar.gz - | tar -zx -C src/
+    - wget -c https://ai.stanford.edu/\~amaas/data/sentiment/aclImdb_v1.tar.gz - | tar -xz -C src/
   script:
     - poetry run pytest
