@@ -30,8 +30,11 @@ flake8:
     - poetry run flake8 .
 
 pytest:
+  image: python:3.11.5
   stage: test
   before_script:
-    - wget -qO- https://ai.stanford.edu/\~amaas/data/sentiment/aclImdb_v1.tar.gz - | tar -zxf -C src/
+    - pip install poetry
+    - poetry install
+    - wget -qO- https://ai.stanford.edu/\~amaas/data/sentiment/aclImdb_v1.tar.gz - | tar -zx -C src/
   script:
     - poetry run pytest
