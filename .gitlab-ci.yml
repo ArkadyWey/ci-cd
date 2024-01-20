@@ -32,6 +32,6 @@ flake8:
 pytest:
   stage: test
   before_script:
-    - wget -qO- https://ai.stanford.edu/\~amaas/data/sentiment/aclImdb_v1.tar.gz - | tar xvz -C src/
+    - wget -qO- https://ai.stanford.edu/\~amaas/data/sentiment/aclImdb_v1.tar.gz - | tar -zxf -C src/
   script:
     - poetry run pytest
