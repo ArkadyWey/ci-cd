@@ -56,7 +56,7 @@ def evaluate_classifier(clf, test_vectors, test_labels):
     return accuracy, precision, recall, f1
 
 if __name__ == "__main__":
-    data_dir = "aclImdb/train"  # Replace with the path to your dataset directory
+    data_dir = "/data/aclImdb/train"  # Replace with the path to your dataset directory
     data, labels = load_data(data_dir)
     train_data, test_data, train_labels, test_labels = split_data(data, labels)
     train_vectors, test_vectors = vectorize_data(train_data, test_data)

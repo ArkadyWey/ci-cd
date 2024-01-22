@@ -1,9 +1,10 @@
-# include:
-#   - template: Docker.gitlab-ci.yml
+include:
+  - template: Docker.gitlab-ci.yml
 
 stages:
   - linting
   - test
+  - build 
 
 .linting-template:
   stage: linting
