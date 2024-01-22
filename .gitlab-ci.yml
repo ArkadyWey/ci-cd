@@ -45,4 +45,4 @@ docker-run:
   image: registry.gitlab.com/lewis.marshall2/cicd-excercises:feature-initial
   stage: integration
   script:
-    - echo done
+    - poetry run python3 -m src.main
