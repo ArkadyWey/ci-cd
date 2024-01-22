@@ -44,3 +44,5 @@ pytest:
 docker-run:
   image: registry.gitlab.com/lewis.marshall2/cicd-excercises
   stage: integration
+  script:
+    - echo done
