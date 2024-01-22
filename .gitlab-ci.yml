@@ -4,7 +4,8 @@ include:
 stages:
   - linting
   - test
-  - build 
+  - build
+  - integration
 
 .linting-template:
   stage: linting
@@ -39,3 +40,7 @@ pytest:
     - wget -q https://ai.stanford.edu/\~amaas/data/sentiment/aclImdb_v1.tar.gz -O - | tar -xz -C src/
   script:
     - poetry run pytest
+
+docker-run:
+  image: registry.gitlab.com/lewis.marshall2/cicd-excercises
+  stage: integration

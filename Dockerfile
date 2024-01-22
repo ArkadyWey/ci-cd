@@ -7,7 +7,7 @@ COPY src /code/src
 COPY pyproject.toml poetry.lock /code/
 WORKDIR /code
 RUN poetry config virtualenvs.create false \
-    && poetry install
+    && poetry install --no-dev
 CMD ["poetry", "run", "python3", "-m", "src.main"]
 
 
