@@ -42,7 +42,7 @@ pytest:
     - poetry run pytest
 
 docker-run:
-  image: registry.gitlab.com/lewis.marshall2/cicd-excercises
+  image: registry.gitlab.com/lewis.marshall2/cicd-excercises:feature-initial
   stage: integration
   script:
     - echo done
