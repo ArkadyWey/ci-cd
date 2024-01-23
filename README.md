@@ -10,3 +10,16 @@ This repository includes a basic example data science project, corresponding uni
 2. pre-commit
 3. python >= 3.11
 
+Each of the requirements can be installed via homebrew which can be installed through the Homebrew package manager, which can be found in Kandji self service.
+
+``` bash
+brew install <package>
+```
+
+## Instructions
+
+### Import Template Jobs
+
+
+
+
