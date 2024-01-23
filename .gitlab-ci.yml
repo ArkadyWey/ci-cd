@@ -1,27 +1,21 @@
 include:
-  - template: Docker.gitlab-ci.yml
-
+  # - template: Docker.gitlab-ci.yml
+    - local: "templates/.ci-include-linting.yml"
 stages:
   - linting
   - test
 
-.linting-template:
-  stage: linting
-  image: registry.gitlab.com/mafda/python-linting
-  before_script:
-    - cd src
-
 isort:
   extends: .linting-template
   script:
-    - isort . --check-only
+    - isort src --check-only
 
 black:
   extends: .linting-template
   script:
-    - black --check .
+    - black --check src
 
 flake8:
   extends: .linting-template
   script:
-    - flake8 .
+    - flake8 src
