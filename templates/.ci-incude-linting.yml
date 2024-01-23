@@ -1,7 +1,0 @@
-.linting-template:
-  stage: linting
-  image: python:3.11.5
-  before_script:
-    - pip install poetry
-    - poetry install
-  allow_failure: true
