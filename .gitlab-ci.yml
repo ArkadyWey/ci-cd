@@ -1,23 +1,8 @@
-stages:
-  - linting
+include:
+  - template: Docker.gitlab-ci.yml
 
-.linting-template:
-  stage: linting
-  image: registry.gitlab.com/mafda/python-linting
-  before_script:
-    - cd src
+.pytest_before_script: &pytest_before_script
+  - pip install poetry
+  - poetry install
+  - wget -q https://ai.stanford.edu/\~amaas/data/sentiment/aclImdb_v1.tar.gz -O - | tar -xz -C src/
 
-isort:
-  extends: .linting-template
-  script:
-    - isort . --check-only
-
-black:
-  extends: .linting-template
-  script:
-    - black --check .
-
-flake8:
-  extends: .linting-template
-  script:
-    - flake8 .
