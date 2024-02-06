@@ -79,3 +79,11 @@ Template types include - `local`, `remote` & `template`.
 1. This task is to consume the image built earlier and run an integration test with some example data in the image.
     1. The image can be found in the following registry address `registry.gitlab.com/facultyai/fellowship/mle-fellowship-teaching-resources/ci-cd:$CI_COMMIT_REF_SLUG` where `$CI_COMMIT_REF_SLUG` is a built in gitlab variable referencing the branch name.
     2. Run the following command to run the test `poetry run python3 -m src.main`
+
+## Additional Excercise (Pre-Commit)
+
+Pre-commit is a tool used to identify common code quality issues before code is pushed up to the remote. Pre-commit can also automate some of the operations required to rectify issues.
+
+1. Switch to branch `pre-commit` which has a `.pre-commit-config.yaml` which includes a number of pre-commit "hooks" which run against and assess the code for known issues.
+1. Run `poetry install && poetry add --group dev pre-commit && poetry run pre-commit install` to install the necessary pre-commit hooks.
+1. Run `poetry run pre-commit run -a` and inspect the formatted files and failed hooks
