@@ -4,18 +4,6 @@
 
 This repository includes a basic example data science project, corresponding unit tests and some pipeline templates that can be used to build a CICD pipeline to lint, test and build the project for deployment.
 
-## Requirements
-
-1. poetry
-2. pre-commit
-3. python >= 3.11
-
-Each of the requirements can be installed via homebrew which can be installed through the Homebrew package manager, which can be found in Kandji self service.
-
-``` bash
-brew install <package>
-```
-
 ## Instructions
 
 ### Stages
@@ -75,7 +63,7 @@ Template types include - `local`, `remote` & `template`.
 1. A `docker-build` job has been included with the `Docker.gitlab-ci.yml` template. Push your newly created branch to the remote to trigger the pipeline. View the pipeline running in the Build > Pipelienes side tab on gitlab.
     1. If the job runs successfully a built container image can be found in the side tab Deploy > Container Registry. There is a ci-cd registry repository and the built image should be tagged with the branch name.
 1. The pyproject.toml includes black, flake8 and isort tools to lint the code provided. This task is to create 3 seperate jobs to run these linting tool.
-    1. Update the include block to include the `local` template file [templates/.ci-include-linting.yaml](./templates/.ci-include-linting.yaml). This template includes configuration needeed to install the linting tools.
+    1. Update the include block to include the `local` template file [templates/.ci-include-linting.yml](./templates/.ci-include-linting.yml). This template includes configuration needeed to install the linting tools.
     1. Define a linting stage for the linting jobs to run in.
     1. Define 3 seperate jobs for each of the linting tools.
     1. In each job extend the hidden job defined in the linting template
@@ -83,8 +71,9 @@ Template types include - `local`, `remote` & `template`.
         1. isort: `isort src --check-only`
         1. black: `black --check src`
         1. flake8: `flake8 src`
+    1. The pipeline is likely to fail due to incorrectly formatted code. Adding an `allow_failure` attribute to the [template file](./templates/.ci-include-linting.yml) and setting it to `true` will allow the rest of the pipeline to continue while still warning of the relevant errors.
 1. This task is to create a `testing` stage and subsequent job to run unit tests on the code provided. Create a job with the following spec:
-    1. image: `pthon:3.11.5`
+    1. image: `python:3.11.5`
     1. script: `poetry run pytest`
     1. A before script has been provided to configure the container as a [yaml anchor](https://docs.gitlab.com/ee/ci/yaml/yaml_optimization.html#yaml-anchors-for-scripts) and can be inluded in the `before_script` keyword by using `*pytest_before_script`.
 1. This task is to consume the image built earlier and run an integration test with some example data in the image.
